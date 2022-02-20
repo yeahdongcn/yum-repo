@@ -1,5 +1,10 @@
 package app
 
+import (
+	"k8s.io/klog/v2"
+	"k8s.io/utils/inotify"
+)
+
 func watchForLockfileContention(path string, done chan struct{}) error {
 	watcher, err := inotify.NewWatcher()
 	if err != nil {
