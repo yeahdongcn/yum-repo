@@ -3,7 +3,7 @@ DOCKER          := docker
 BINDIR          := $(CURDIR)/bin
 GOOS            ?= $(shell $(GO) env GOOS)
 LDFLAGS         :=
-.DEFAULT_GOAL   := build
+.DEFAULT_GOAL   := docker-build
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell $(GO) env GOBIN))
@@ -60,3 +60,6 @@ LDFLAGS += $(VERSION_LDFLAGS)
 build: tidy fmt vet ## Build yum-repo binary.
 	@mkdir -p $(BINDIR)
 	CGO_ENABLED=0 GOOS=$(GOOS) $(GO) build -o $(BINDIR) -ldflags '$(LDFLAGS)' $(CURDIR)/...
+
+docker-build:
+include $(CURDIR)/docker/docker.mk

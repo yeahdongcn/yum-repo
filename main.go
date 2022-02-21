@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/yeahdongcn/yum-repo/pkg/app"
+	"github.com/yeahdongcn/yum-repo/pkg/cmd"
 )
 
 func main() {
-	app.X()
+	cmd.Execute()
 }
